@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Styles{ 
+<style>
+    h1{
+        background-color:azure;
+    }
+
+</style>
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <input name="btn" class="bt1" type="button"/>
+</div>
+
+@section Scripts{ 
+<script>
+    $('.bt1').val("STPOOPID").click(function() {
+        alert("WHY U PRESS ME")
+    });
+
+    var emp = {"employees":[
+        { "name": "Tom", "workYears": 3, "salary": 35000 },
+        { "name": "Jack", "workYears": 5, "salary": 40000 },
+        { "name": "Jack", "workYears": 7, "salary": 45000 }
+    ]};
+
+    //for (let i = 0, max = emp.employees.length; i < max; i++) {
+    //    console.log(emp.employees[i].name);
+    //    console.log(emp.employees[i].workYears);
+    //    console.log(emp.employees[i].salary);
+    //}
+
+    //emp.employees.forEach(employee => {
+    //    const { name, workYears, salary } = employee
+    //    console.log(name);
+    //    console.log(workYears);
+    //    console.log(salary);
+    //})
+
+    $.each(employees(value,))
+</script>
+}
