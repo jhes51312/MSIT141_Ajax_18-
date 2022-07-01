@@ -11,11 +11,29 @@ namespace MSIT141_Ajax_site.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DemoContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult FirstAjax()
         {
+            return View();
+        }
+
+        public IActionResult AjaxPost()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public HomeController(ILogger<HomeController> logger, DemoContext conetxt)
+        {
+
             _logger = logger;
+            _context = conetxt;
         }
 
         public IActionResult Index()
