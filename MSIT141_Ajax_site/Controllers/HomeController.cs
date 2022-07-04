@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MSIT141_Ajax_site.Models;
 using System;
@@ -13,6 +14,16 @@ namespace MSIT141_Ajax_site.Controllers
     {
         private readonly DemoContext _context;
         private readonly ILogger<HomeController> _logger;
+
+        public IActionResult Fetch()
+        {
+            return View();
+        }
+
+        public IActionResult Promise()
+        {
+            return View();
+        }
 
         public IActionResult FirstAjax()
         {
@@ -29,6 +40,11 @@ namespace MSIT141_Ajax_site.Controllers
             return View();
         }
 
+        public IActionResult Address()
+        {
+            return View();
+        }
+        
         public HomeController(ILogger<HomeController> logger, DemoContext conetxt)
         {
 

@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>Address</h1>
+
+<select id="select1"></select>
+<select id="select2"></select>
+<select id="select3"></select>
+
+@section Scripts{ 
+    <script>
+
+    const selCity = document.querySelector('#select1');
+    const selDist = document.querySelector('#select2');
+    const selRoad = document.querySelector('#select3');
+    LoadCity();
+
+        selCity.addEventListener('change',function (){
+            $('#select2>option').remove()
+            LoadCity();
+        });
+        selDist.addEventListener('change', function () {
+            $('#select3>option').remove()
+            LoadDist();
+        });
+    //const changeCity;
+
+    @*selCity.addEventListener('change', () => {
+        console.log(selCity.options[selCity.selectedIndex].value);
+    })
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+        console.log(xhr.responseText);
+        console.log(JSON.parse(xhr.responseText));
+
+        const datas = JSON.parse(xhr.responseText);
+        datas.forEach((city) => {
+            const opt = new Option(city, city);
+            selCity.options.add(opt);
+        })
+    })
+    xhr.open("GET", "@Url.Content("~/api/city")")
+    xhr.send();*@
+    async function LoadCity() {
+        //const selectedCity = selCity.options[selCity.selectedIndex].value
+        const response = await fetch('@Url.Content("~/api/City")');
+        const datas = await response.json();
+        datas.forEach(city => {
+            //console.log(city);
+            const opt = new Option(city, city);
+            selCity.options.add(opt);
+        })
+        LoadDist();
+     }
+
+    //const params = `?${selCity.value}`;
+    async function LoadDist() {
+        const changeCity = selCity.options[selCity.selectedIndex].value;
+        const response = await fetch("@Url.Content("~/api/Districts")"+`?city=${changeCity}`);
+        const datas = await response.json();
+        datas.forEach(district => {
+            console.log(district);
+            const opt = new Option(district, district);
+            selDist.options.add(opt);
+        })
+        LoadRoad();
+    }
+
+    async function LoadRoad() {
+        const changeDist = selDist.options[selDist.selectedIndex].value;
+        const response = await fetch("@Url.Content("~/api/Road")" + `?district=${changeDist}`);
+        const datas = await response.json();
+        datas.forEach(road => {
+            console.log(road);
+            const opt = new Option(road, road);
+            selRoad.options.add(opt);
+        })
+    }
+    </script>
+}

@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label for="InputName">姓名</label>
                 <input type="text" class="form-control" id="InputName" name="name">
-                <small id="emailHelp" style="color:red"></small>
+                <small id="InputName" style="color:red"></small>
             </div>
             <div class="form-group">
                 <label for="InputEmail">電子信箱</label>
@@ -22,6 +22,10 @@
                 <input type="number" class="form-control" id="InputAge" name="age">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="file"/>
+                <label class="custom-file-label" for="customFile">請選擇檔案</label>
+            </div>
         </form>
         <br />
         <div class="alert alert-info" id="div1"></div>
@@ -51,7 +55,7 @@
         const divInfo = document.querySelector('#div1');
         const txtName = document.querySelector('#InputName');
 
-        txtName.addEventListener('blur', (evt) => {
+        @*txtName.addEventListener('blur', (evt) => {
             evt.preventDefault();
             const formData = new FormData(document.userInfo);
             const xhr = new XMLHttpRequest();
@@ -61,10 +65,23 @@
             })
             xhr.open('POST', '@Url.Content("~/api/VerifyName")');
             xhr.send(formData);
+        })*@
+        txtName.addEventListener('blur', () => {
+            if (txtName.value.trim() === "") {
+                divInfo.innerHTML = "請輸入姓名";
+            } else {
+                if (data == "True") {
+                    divInfo.innerHTML = `<h3>姓名${data}已存在</h3>`;
+                } else {
+                    divInfo.innerHTML = "此姓名可以使用";
+                }
+            }
+             xhr.open('POST', '@Url.Content("~/api/CheckName")');
         })
 
         btnSubmit.addEventListener('click', (evt) => {
-            evt.preventDefault();
+
+            @*evt.preventDefault();
             const formData = new FormData(document.userInfo);
             const xhr = new XMLHttpRequest();
 
@@ -72,8 +89,19 @@
                 const data = xhr.responseText;
                 divInfo.innerHTML = `<h3>${data}</h3>`;
             })
-            xhr.open('POST', '@Url.Content("~/api/index")');
-            xhr.send(formData);
+            //xhr.open('POST', '@Url.Content("~/api/index")');
+            xhr.open('POST', '@Url.Content("~/api/Register")');
+            xhr.send(formData);*@
+            @* xhr.open('POST', '@Url.Content("~/api/Register")');
+            xhr.send(formData);*@
+
+            fetch('@Url.Content("~/api/Register")', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => divInfo.innerHTML = data);
+            
         })
     </script>
 }
