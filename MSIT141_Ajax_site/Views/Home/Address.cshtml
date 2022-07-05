@@ -19,10 +19,12 @@
 
         selCity.addEventListener('change',function (){
             $('#select2>option').remove()
+            $('#select3>option').remove()
             LoadCity();
         });
         selDist.addEventListener('change', function () {
             $('#select3>option').remove()
+            LoadCity();
             LoadDist();
         });
     //const changeCity;
