@@ -117,5 +117,6 @@ namespace MSIT141_Ajax_site.Controllers
             byte[] img = member.FileData;
             return File(img, "image/jpeg");
         }
+
     }
 }

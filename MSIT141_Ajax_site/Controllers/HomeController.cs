@@ -15,6 +15,22 @@ namespace MSIT141_Ajax_site.Controllers
         private readonly DemoContext _context;
         private readonly ILogger<HomeController> _logger;
 
+        public IActionResult Partial()
+        {
+            ViewBag.data = "Hello Partial!!";
+            return PartialView(_context.Members);
+        }
+
+        public IActionResult jQuery()
+        {
+            return View();
+        }
+
+        public IActionResult History()
+        {
+            return View();
+        }
+
         public IActionResult Fetch()
         {
             return View();

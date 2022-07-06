@@ -20,7 +20,7 @@
         selCity.addEventListener('change',function (){
             $('#select2>option').remove()
             $('#select3>option').remove()
-            LoadCity();
+            await LoadCity();
         });
         selDist.addEventListener('change', function () {
             $('#select3>option').remove()
@@ -54,7 +54,7 @@
             const opt = new Option(city, city);
             selCity.options.add(opt);
         })
-        LoadDist();
+        await LoadDist();
      }
 
     //const params = `?${selCity.value}`;
@@ -67,7 +67,7 @@
             const opt = new Option(district, district);
             selDist.options.add(opt);
         })
-        LoadRoad();
+        await LoadRoad();
     }
 
     async function LoadRoad() {

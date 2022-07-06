@@ -1,87 +1,95 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@section Styles{ 
-<style>
-    h1{
-        background-color:azure;
-    }
-    button {
-        navbar-toggler;
-    }
-    table {
-        border: 2px solid black;
-        border-collapse: collapse;
-    }
+@section Styles{
+    <style>
+        h1 {
+            background-color: azure;
+        }
 
-    td {
-        border: 1px solid black;
-    }
-</style>
+        button {
+            navbar-toggler;
+        }
+
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+    </style>
 }
+
+@Html.Partial("Partial")
+
+<hr />
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <input id="bt1" type="button" />
-    <input id="bt2" type="button" value="JavascriptButton"/>
+    <input id="bt2" type="button" value="JavascriptButton" />
     <div><table id="showTable1"></table></div>
-    <br/>
+    <br />
     <div><table id="showTable2"></table></div>
 </div>
 
-@section Scripts{ 
-<script>
-   
+@section Scripts{
+    <script>
 
-    var emp = {"employees":[
-        { "name": "Tom", "workYears": 3, "salary": 35000 },
-        { "name": "Jack", "workYears": 5, "salary": 40000 },
-        { "name": "Mary", "workYears": 7, "salary": 45000 }
-    ]};
-    $.each(emp, function (index, value) {
-        tr = '';
-        //console.log(index);
-        //console.log(value);
-    })
 
-    $("#bt1").val("JQueryButton").click(function () {
-        $("#showTable1>tr").remove()
-        //alert("WHY U PRESS ME")
-        tr = "<tr><td>JQuery表格產生</td><tr>";
-        $.each(emp.employees, function (index, value) {
-            //tr = ""
-            console.log(index);
-            console.log(value);
-            tr += `<td>${value.name}</td><td>${value.workYears}</td><td>${value.salary}</td></tr>`
-            
+        var emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+        };
+        $.each(emp, function (index, value) {
+            tr = '';
+            //console.log(index);
+            //console.log(value);
         })
-        $("#showTable1").append(`<tr>${tr}<br/>`);
-    });
 
-    document.getElementById("bt2").addEventListener("click", () => {
-        document.getElementById("showTable2").innerHTML = "<tr>"+"JavaScript表格產生";
-        for (let a = 0, max = emp.employees.length; a < max; a++) {
-            document.getElementById("showTable2").innerHTML +=
-                ("<td>" + emp.employees[a].name + "</td><td>"
-                + emp.employees[a].workYears + "</td><td>"
-                + emp.employees[a].salary+"</td>"
-                );
-        }
-        document.getElementById("showTable2").innerHTML += "</tr>";
-    })
-    //for (let i = 0, max = emp.employees.length; i < max; i++) {
-    //    console.log(emp.employees[i].name);
-    //    console.log(emp.employees[i].workYears);
-    //    console.log(emp.employees[i].salary);
-    //}
+        $("#bt1").val("JQueryButton").click(function () {
+            $("#showTable1>tr").remove()
+            //alert("WHY U PRESS ME")
+            tr = "<tr><td>JQuery表格產生</td><tr>";
+            $.each(emp.employees, function (index, value) {
+                //tr = ""
+                console.log(index);
+                console.log(value);
+                tr += `<td>${value.name}</td><td>${value.workYears}</td><td>${value.salary}</td></tr>`
 
-    //emp.employees.forEach(employee => {
-    //    const { name, workYears, salary } = employee
-    //    console.log(name);
-    //    console.log(workYears);
-    //    console.log(salary);
-    //})
+            })
+            $("#showTable1").append(`<tr>${tr}<br/>`);
+        });
 
-    
-</script>
+        document.getElementById("bt2").addEventListener("click", () => {
+            document.getElementById("showTable2").innerHTML = "<tr>" + "JavaScript表格產生";
+            for (let a = 0, max = emp.employees.length; a < max; a++) {
+                document.getElementById("showTable2").innerHTML +=
+                    ("<td>" + emp.employees[a].name + "</td><td>"
+                        + emp.employees[a].workYears + "</td><td>"
+                        + emp.employees[a].salary + "</td>"
+                    );
+            }
+            document.getElementById("showTable2").innerHTML += "</tr>";
+        })
+            //for (let i = 0, max = emp.employees.length; i < max; i++) {
+            //    console.log(emp.employees[i].name);
+            //    console.log(emp.employees[i].workYears);
+            //    console.log(emp.employees[i].salary);
+            //}
+
+            //emp.employees.forEach(employee => {
+            //    const { name, workYears, salary } = employee
+            //    console.log(name);
+            //    console.log(workYears);
+            //    console.log(salary);
+            //})
+
+
+    </script>
 }
